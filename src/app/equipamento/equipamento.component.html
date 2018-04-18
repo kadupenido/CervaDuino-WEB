@@ -1,0 +1,44 @@
+<div class="page-header">
+  <h1>Equipamento
+    <small>Configurações</small>
+  </h1>
+</div>
+
+<form [formGroup]="equipamentoForm">
+  <div class="row">
+    <div class="col-md-4" formGroupName="address">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">HLT</h3>
+        </div>
+        <div class="panel-body">
+          <label for="altura">Altura</label>
+          <input type="number" class="form-control" id="altura" placeholder="Altura">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">MLT</h3>
+        </div>
+        <div class="panel-body">
+          Panel content
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">BK</h3>
+        </div>
+        <div class="panel-body">
+          Panel content
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<p>Form value: {{ equipamentoForm.value | json }}</p>
+<p>Form status: {{ equipamentoForm.status | json }}</p>
