@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Equipamento } from "./equipamento";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-equipamento",
@@ -15,21 +17,36 @@ export class EquipamentoComponent implements OnInit {
   ngOnInit() {}
 
   createForm() {
-    const tnkValues = {
-      altura: "",
-      diametro: "",
-      capacidade: "",
-      espacoPerdido: ""
-    };
-
     this.equipamentoForm = this.fb.group({
-      capacidade: ["", Validators.required],
-      hlt: this.fb.group(tnkValues),
-      mlt: this.fb.group(tnkValues),
+      hlt: this.fb.group({
+        altura: ["", Validators.required],
+        diametro: ["", Validators.required],
+        capacidade: "",
+        espacoPerdido: ["", Validators.required]
+      }),
+      mlt: this.fb.group({
+        altura: ["", Validators.required],
+        diametro: ["", Validators.required],
+        capacidade: "",
+        espacoPerdido: ["", Validators.required]
+      }),
       bk: this.fb.group({
-        tnkValues,
+        altura: ["", Validators.required],
+        diametro: ["", Validators.required],
+        capacidade: "",
+        espacoPerdido: ["", Validators.required],
         taxaEvaporacao: ""
       })
     });
+    //this.equipamentoForm.valueChanges.map(this.formUpdated);
   }
+
+  onFormSubmit() {
+    const equip: Equipamento = this.equipamentoForm.value;
+    //equip.hlt.altura = 36;
+    //equip.hlt.diametro = 34;
+    console.log(equip.hlt.capacidade);
+  }
+
+  formUpdated(val) {}
 }

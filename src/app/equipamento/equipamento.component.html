@@ -4,16 +4,34 @@
   </h1>
 </div>
 
-<form [formGroup]="equipamentoForm">
+<form [formGroup]="equipamentoForm" (ngSubmit)="onFormSubmit()">
   <div class="row">
-    <div class="col-md-4" formGroupName="address">
+    <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">HLT</h3>
         </div>
-        <div class="panel-body">
-          <label for="altura">Altura</label>
-          <input type="number" class="form-control" id="altura" placeholder="Altura">
+        <div class="panel-body" formGroupName="hlt">
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="altura">Altura</label>
+              <input type="number" class="form-control" formControlName="altura">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="altura">Diâmetro</label>
+              <input type="number" class="form-control" formControlName="diametro">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="altura">Espaço perdido</label>
+              <input type="number" class="form-control" formControlName="espacoPerdido">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="altura">Capacidade</label>
+              <input type="number" class="form-control" formControlName="capacidade" readonly>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -22,8 +40,27 @@
         <div class="panel-heading">
           <h3 class="panel-title">MLT</h3>
         </div>
-        <div class="panel-body">
-          Panel content
+        <div class="panel-body" formGroupName="mlt">
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="altura">Altura</label>
+              <input type="number" class="form-control" formControlName="altura">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="altura">Diâmetro</label>
+              <input type="number" class="form-control" formControlName="diametro">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="altura">Espaço perdido</label>
+              <input type="number" class="form-control" formControlName="espacoPerdido">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="altura">Capacidade</label>
+              <input type="number" class="form-control" formControlName="capacidade" readonly>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -32,13 +69,47 @@
         <div class="panel-heading">
           <h3 class="panel-title">BK</h3>
         </div>
-        <div class="panel-body">
-          Panel content
+        <div class="panel-body" formGroupName="bk">
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <label for="altura">Altura</label>
+              <input type="number" class="form-control" formControlName="altura">
+            </div>
+            <div class="col-md-4 form-group">
+              <label for="altura">Diâmetro</label>
+              <input type="number" class="form-control" formControlName="diametro">
+            </div>
+            <div class="col-md-4 form-group">
+              <label for="altura">Evaporação</label>
+              <input type="number" class="form-control" formControlName="taxaEvaporacao">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 form-group">
+              <label for="altura">Espaço perdido</label>
+              <input type="number" class="form-control" formControlName="espacoPerdido">
+            </div>
+            <div class="col-md-6 form-group">
+              <label for="altura">Capacidade</label>
+              <input type="number" class="form-control" formControlName="capacidade" readonly>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <button type="submit" [disabled]="!equipamentoForm.valid" class="btn btn-primary btn-block">SALVAR</button>
       </div>
     </div>
   </div>
 </form>
 
-<p>Form value: {{ equipamentoForm.value | json }}</p>
-<p>Form status: {{ equipamentoForm.status | json }}</p>
+<hr>
+
+<pre>
+  <p>Form value: {{ equipamentoForm.value | json }}</p>
+  <p>Form status: {{ equipamentoForm.status | json }}</p>
+</pre>
