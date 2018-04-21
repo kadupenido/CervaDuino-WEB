@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>Receitas</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Estilo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of receitas">
+      <td>{{r.nome}}</td>
+      <td>{{r.estilo}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -15,7 +15,7 @@ import { EquipamentoService } from './equipamento.service';
 export class EquipamentoComponent implements OnInit, OnDestroy {
 
   equipamentoForm: FormGroup;
-  subs: Subscription[];
+  subs: Subscription[] = [];
 
   constructor(private fb: FormBuilder,
     private equipamentoService: EquipamentoService,
@@ -27,7 +27,6 @@ export class EquipamentoComponent implements OnInit, OnDestroy {
     this.spinnerService.show();
 
     this.createForm();
-    this.subs = new Array<Subscription>();
   }
 
   ngOnInit() {

@@ -8,19 +8,20 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import { AppComponent } from './app.component';
-import { EquipamentoComponent } from './equipamento/equipamento.component';
-import { EquipamentoService } from './equipamento/equipamento.service';
+import { EquipamentoModule } from './equipamento/equipamento.module';
 import { HomeComponent } from './home/home.component';
-import { ReceitaComponent } from './receita/receita.component';
+import { ReceitasModule } from './receitas/receitas.module';
 
 const appRoutes: Routes = [
-  { path: 'equipamento', component: EquipamentoComponent },
   { path: "", component: HomeComponent },
   { path: "**", component: HomeComponent }
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, EquipamentoComponent, ReceitaComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -28,12 +29,15 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     Ng4LoadingSpinnerModule.forRoot(),
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    EquipamentoModule,
+    ReceitasModule
   ],
-  providers: [
-    EquipamentoService
+  bootstrap: [
+    AppComponent
   ],
-  bootstrap: [AppComponent],
-  exports: [RouterModule]
+  exports: [
+    RouterModule
+  ]
 })
 export class AppModule { }
