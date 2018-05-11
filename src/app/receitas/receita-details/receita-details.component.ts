@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReceitaDetailsComponent implements OnInit {
 
+  rampas = [
+    { temperatura: 67, minutos: 90 },
+    { temperatura: 76, minutos: 10 }
+  ]
+
   constructor() { }
 
   ngOnInit() {

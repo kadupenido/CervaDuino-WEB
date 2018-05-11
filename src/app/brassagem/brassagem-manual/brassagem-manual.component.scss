@@ -1,0 +1,41 @@
+.panel-heading {
+    color: #fff;
+    background-color: #343a40;
+}
+
+.no-border {
+    border: 0;
+    box-shadow: none;
+    /* You may want to include this as bootstrap applies these styles too */
+}
+
+input[type="number"] {
+    color: #fff;
+    background-color: #555555;
+    border: 1px solid #fff;
+}
+
+.form-control {
+    background-color: #424242;
+}
+
+.mat-card {
+    // min-height: 455px;
+    margin-bottom: 10px;
+}
+
+.btn-default.btn-on.active {
+    background-color: #5BB75B;
+    color: white;
+}
+
+.btn-default.btn-off.active {
+    background-color: #DA4F49;
+    color: white;
+}
+
+.switch .form-control {
+    border: none;
+    padding-left: 0px;
+    padding-top: 0px;
+}

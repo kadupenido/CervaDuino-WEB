@@ -4,6 +4,136 @@
   </h1>
 </div>
 
+<form>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">DADOS</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <label for="altura">Nome</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="altura">OG</label>
+                <input type="number" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="altura">Litros por KG de Grão</label>
+                <input type="number" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="altura">Qtd. Grãos</label>
+                <input type="number" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="altura">Tamanho do Lote</label>
+                <input type="number" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">RAMPAS DE MOSTURA</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Temperatura</th>
+                    <th>Minutos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let r of rampas">
+                    <td>
+                      <button class="btn btn-primary btn-xs">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                    <td>{{r.temperatura}}</td>
+                    <td>{{r.minutos}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">ADICIONAR</h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label for="altura">Temperatura</label>
+                    <input type="number" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label for="altura">Tempo em Minutos</label>
+                    <input type="number" class="form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">ADIÇÕES DE LÚPULO</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="altura">Lúpulo</label>
+                <input type="number" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="altura">Tempo</label>
+                <input type="number" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+
 <!-- <form>
   <div class="row">
     <div class="col-md-4">

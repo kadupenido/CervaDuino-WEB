@@ -12,8 +12,18 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
-          <a [routerLink]="['/']">Home</a>
+        <li class="dropdown" [routerLinkActive]="'active'" [routerLinkActiveOptions]="{ exact: true }">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brassagem
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu inverse-dropdown">
+            <li>
+              <a [routerLink]="['/brassagem/manual']">Manual</a>
+            </li>
+            <li>
+              <a [routerLink]="['/brassagem/automatica']">Automática</a>
+            </li>
+          </ul>
         </li>
         <li [routerLinkActive]="'active'">
           <a [routerLink]="['/receitas']">Receitas</a>

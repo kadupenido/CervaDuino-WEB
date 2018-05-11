@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,19 +8,20 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 import { AppComponent } from './app.component';
+import { BrassagemManualComponent } from './brassagem/brassagem-manual/brassagem-manual.component';
+import { BrassagemModule } from './brassagem/brassagem.module';
 import { EquipamentoModule } from './equipamento/equipamento.module';
-import { HomeComponent } from './home/home.component';
 import { ReceitasModule } from './receitas/receitas.module';
 
 const appRoutes: Routes = [
-  { path: "", component: HomeComponent },
-  { path: "**", component: HomeComponent }
+  { path: "brassagem/manual", component: BrassagemManualComponent },
+  { path: "", component: BrassagemManualComponent },
+  { path: "**", component: BrassagemManualComponent }
 ];
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -31,13 +32,17 @@ const appRoutes: Routes = [
     Ng4LoadingSpinnerModule.forRoot(),
     ToastModule.forRoot(),
     EquipamentoModule,
-    ReceitasModule
+    ReceitasModule,
+    BrassagemModule
   ],
   bootstrap: [
     AppComponent
   ],
   exports: [
     RouterModule
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ]
 })
 export class AppModule { }

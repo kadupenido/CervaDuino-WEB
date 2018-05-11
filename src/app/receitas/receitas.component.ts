@@ -1,6 +1,9 @@
-import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { ToastsManager } from 'ng2-toastr';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Subscription } from 'rxjs';
+
 import { ReceitaService } from './receita.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-receitas',
@@ -12,10 +15,18 @@ export class ReceitasComponent implements OnInit {
   subs: Subscription[] = [];
   receitas: any[] = [];
 
-  constructor(private receitaService: ReceitaService) { }
+  constructor(
+    private receitaService: ReceitaService,
+    private spinnerService: Ng4LoadingSpinnerService,
+    private toastr: ToastsManager,
+    private vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+    this.spinnerService.show();
+  }
 
   ngOnInit() {
     this.receitas = this.receitaService.obterReceitas();
+    this.spinnerService.hide();
   }
 
 }

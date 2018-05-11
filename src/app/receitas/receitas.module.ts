@@ -7,7 +7,8 @@ import { ReceitaService } from './receita.service';
 
 const receitasRoutes: Routes = [
   { path: 'receitas', component: ReceitasComponent },
-  { path: 'receitas/:id', component: ReceitaDetailsComponent }
+  { path: 'receitas/nova', component: ReceitaDetailsComponent },
+  { path: 'receitas/detalhes/:id', component: ReceitaDetailsComponent }
 ];
 
 @NgModule({

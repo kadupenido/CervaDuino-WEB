@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { Equipamento } from './equipamento.model';
 import { EquipamentoService } from './equipamento.service';
@@ -21,7 +21,7 @@ export class EquipamentoComponent implements OnInit, OnDestroy {
     private equipamentoService: EquipamentoService,
     private spinnerService: Ng4LoadingSpinnerService,
     private toastr: ToastsManager,
-    vcr: ViewContainerRef) {
+    private vcr: ViewContainerRef) {
 
     this.toastr.setRootViewContainerRef(vcr);
     this.spinnerService.show();
