@@ -4,7 +4,10 @@
 @import '../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
 body {
-    padding: 40px 15px;
     text-align: left;
-    background-color: #00000005
+    background-color: #00000005;
+}
+
+.navbar-static-top {
+    margin-bottom: 19px;
 }
