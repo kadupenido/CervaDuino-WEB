@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import * as io from 'socket.io-client';
 
 import { DadosMostura } from './dados-mostura.model';
 
@@ -13,7 +12,6 @@ import { DadosMostura } from './dados-mostura.model';
 export class BrassagemManualComponent implements OnInit {
 
   public dadosMostura: DadosMostura;
-  private socket: SocketIOClient.Socket;
 
   constructor(
     private spinnerService: Ng4LoadingSpinnerService,
