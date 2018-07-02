@@ -1,59 +1,4 @@
-<!-- <div class="page-header">
-  <h1>Brassagem
-    <small>Manual</small>
-  </h1>
-</div> -->
-
-
 <div class="row">
-
-  <!-- HLT -->
-  <div class="col-md-4">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>HLT</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="row">
-          <div class="col-md-4 col-md-offset-3 col-xs-offset-3">
-            <ngx-gauge type="arch" size="150" [value]="dadosMostura.hlt.temperatura" label="Temp" append="°C" thick="10" foregroundColor="rgba(218, 79, 73, 1)">
-            </ngx-gauge>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4 col-xs-6">
-            <div class="form-group">
-              <label>SET POINT</label>
-              <input type="number" class="form-control" [(ngModel)]="dadosMostura.hlt.setPoint" (change)="dataChanged()">
-            </div>
-          </div>
-          <div class="col-md-6 col-xs-6">
-            <div class="switch">
-              <div class="form-group">
-                <label>RESISTÊNCIA</label>
-                <div class="btn-group form-control" id="status" data-toggle="buttons">
-                  <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.hlt.resistencia = !dadosMostura.hlt.resistencia; dataChanged()" 
-                    [class.active]="dadosMostura.hlt.resistencia === true">
-                    <input type="radio">ON</label>
-                  <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.hlt.resistencia = !dadosMostura.hlt.resistencia; dataChanged()" 
-                    [class.active]="dadosMostura.hlt.resistencia === false">
-                    <input type="radio">OFF</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="potenciaHlt">POTÊNCIA</label>
-              <mat-slider min="0" max="100" step="1" [(ngModel)]="dadosMostura.hlt.potencia" (change)="dataChanged()" thumbLabel="true" class="form-control no-border"></mat-slider>
-            </div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
 
   <!-- MLT -->
   <div class="col-md-4">
@@ -64,7 +9,7 @@
       <mat-card-content>
 
         <div class="row">
-          <div class="col-md-4 col-md-offset-3 col-xs-offset-3">
+          <div class="col-md-6 col-md-offset-3 col-xs-offset-3">
             <ngx-gauge type="arch" size="150" [value]="dadosMostura.mlt.temperatura" label="Temp" append="°C" thick="10" foregroundColor="rgba(218, 79, 73, 1)">
             </ngx-gauge>
           </div>
@@ -72,7 +17,7 @@
 
         <div class="row">
 
-          <div class="col-md-4 col-xs-6">
+          <div class="col-md-6 col-xs-5">
             <div class="form-group">
               <label>SET POINT</label>
               <input type="number" class="form-control" [(ngModel)]="dadosMostura.mlt.setPoint">
@@ -84,29 +29,21 @@
               <div class="form-group">
                 <label>RESISTÊNCIA</label>
                 <div class="btn-group form-control" id="status" data-toggle="buttons">
-                  <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.mlt.resistencia = !dadosMostura.mlt.resistencia; dataChanged()" 
+                  <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.mlt.resistencia = !dadosMostura.mlt.resistencia; dataChanged()"
                     [class.active]="dadosMostura.mlt.resistencia === true">
                     <input type="radio">ON</label>
-                  <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.mlt.resistencia = !dadosMostura.mlt.resistencia; dataChanged()" 
+                  <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.mlt.resistencia = !dadosMostura.mlt.resistencia; dataChanged()"
                     [class.active]="dadosMostura.mlt.resistencia === false">
                     <input type="radio">OFF</label>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="potenciaHlt">POTÊNCIA</label>
-              <mat-slider min="0" max="100" step="1" value="100" thumbLabel="true" [(ngModel)]="dadosMostura.mlt.potencia" class="form-control no-border"></mat-slider>
-            </div>
-          </div>
         </div>
-
         <div class="row">
-          <div class="col-md-12">
+
+          <div class="col-md-12 col-xs-8">
             <div class="switch">
               <div class="form-group">
                 <label>RECIRCULAÇÃO</label>
@@ -119,27 +56,72 @@
               </div>
             </div>
           </div>
+
         </div>
 
       </mat-card-content>
     </mat-card>
   </div>
 
-  <!-- BK -->
+
   <div class="col-md-4">
+
+    <!-- HLT -->
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>HLT</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-4 col-md-offset-3 col-xs-offset-3">
+            <ngx-gauge type="arch" size="150" [value]="dadosMostura.hlt.temperatura" label="Temp" append="°C" thick="10" foregroundColor="rgba(218, 79, 73, 1)">
+            </ngx-gauge>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-xs-5">
+            <div class="form-group">
+              <label>SET POINT</label>
+              <input type="number" class="form-control" [(ngModel)]="dadosMostura.hlt.setPoint" (change)="dataChanged()">
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-6">
+            <div class="switch">
+              <div class="form-group">
+                <label>RESISTÊNCIA</label>
+                <div class="btn-group form-control" id="status" data-toggle="buttons">
+                  <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.hlt.resistencia = !dadosMostura.hlt.resistencia; dataChanged()"
+                    [class.active]="dadosMostura.hlt.resistencia === true">
+                    <input type="radio">ON</label>
+                  <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.hlt.resistencia = !dadosMostura.hlt.resistencia; dataChanged()"
+                    [class.active]="dadosMostura.hlt.resistencia === false">
+                    <input type="radio">OFF</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- BK -->
     <mat-card>
       <mat-card-header>
         <mat-card-title>BK</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div class="row">
-          <div class="col-md-4 col-md-offset-3 col-xs-offset-3">
-            <ngx-gauge type="arch" size="150" [value]="dadosMostura.mlt.temperatura" label="Temp" append="°C" thick="10" foregroundColor="rgba(218, 79, 73, 1)">
-            </ngx-gauge>
+
+          <div class="col-md-12 col-xs-12">
+            <div class="form-group">
+              <label for="potenciaHlt">POTÊNCIA</label>
+              <mat-slider min="0" max="100" step="1" value="100" [(ngModel)]="dadosMostura.bk.potencia" thumbLabel="true" class="form-control no-border"></mat-slider>
+            </div>
           </div>
         </div>
+
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12 col-xs-12">
             <div class="switch">
               <div class="form-group">
                 <label>RESISTÊNCIA</label>
@@ -152,27 +134,16 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="potenciaHlt">POTÊNCIA</label>
-              <mat-slider min="0" max="100" step="1" value="100" [(ngModel)]="dadosMostura.bk.potencia" thumbLabel="true" class="form-control no-border"></mat-slider>
-            </div>
-          </div>
+
         </div>
       </mat-card-content>
     </mat-card>
+
   </div>
 
-</div>
-
-<hr>
-
-<div class="row">
-
-  <!-- Consumo -->
   <div class="col-md-4">
+
+    <!-- Consumo -->
     <mat-card>
       <mat-card-header>
         <mat-card-title>CONSUMO</mat-card-title>
@@ -180,26 +151,27 @@
       <mat-card-content>
         <div class="row">
           <div class="col-md-4 col-md-offset-3 col-xs-offset-3">
-            <ngx-gauge type="arch" [value]="dadosMostura.consumo.energia"  max="15" size="150" label="Energia" append="kw/h" thick="10" foregroundColor="rgba(218, 79, 73, 1)">
+            <ngx-gauge type="arch" [value]="dadosMostura.consumo.energia" max="15" size="140" label="Energia" append="kw/h" thick="10"
+              foregroundColor="rgba(218, 79, 73, 1)">
             </ngx-gauge>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6 col-xs-6">
-            <ngx-gauge type="full" [value]="dadosMostura.consumo.potencia"  max="7000" size="150" label="Potência" append="w" thick="10" foregroundColor="rgba(218, 79, 73, 1)">
+            <ngx-gauge type="full" [value]="dadosMostura.consumo.potencia" max="7000" size="140" label="Potência" append="w" thick="10"
+              foregroundColor="rgba(218, 79, 73, 1)">
             </ngx-gauge>
           </div>
           <div class="col-md-6 col-xs-6">
-            <ngx-gauge type="full" [value]="dadosMostura.consumo.corrente"  max="32" size="150" label="Corrente" append="A" thick="10" foregroundColor="rgba(218, 79, 73, 1)">
+            <ngx-gauge type="full" [value]="dadosMostura.consumo.corrente" max="32" size="140" label="Corrente" append="A" thick="10"
+              foregroundColor="rgba(218, 79, 73, 1)">
             </ngx-gauge>
           </div>
         </div>
       </mat-card-content>
     </mat-card>
-  </div>
 
-  <!-- Temp do Circuito -->
-  <div class="col-md-4">
+    <!-- Temp do Circuito -->
     <mat-card>
       <mat-card-header>
         <mat-card-title>CIRCUITO</mat-card-title>
@@ -208,12 +180,13 @@
         <div class="row">
           <div class="col-md-4 col-md-offset-3 col-xs-offset-3">
             <div c></div>
-            <ngx-gauge type="arch" [value]="dadosMostura.temperaturaCircuito" label="temp" size="150" append="°C" thick="10" foregroundColor="rgba(218, 79, 73, 1)">
+            <ngx-gauge type="arch" [value]="dadosMostura.temperaturaCircuito" label="temp" size="140" append="°C" thick="10" foregroundColor="rgba(218, 79, 73, 1)">
             </ngx-gauge>
           </div>
         </div>
       </mat-card-content>
     </mat-card>
+
   </div>
 
 </div>

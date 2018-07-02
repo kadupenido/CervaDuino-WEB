@@ -9,6 +9,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NgxGaugeModule } from 'ngx-gauge';
 
 import { BrassagemManualComponent } from './brassagem-manual/brassagem-manual.component';
+import { BrassagemManualService } from './brassagem-manual/brassagem-manual.service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,9 @@ import { BrassagemManualComponent } from './brassagem-manual/brassagem-manual.co
   ],
   declarations: [
     BrassagemManualComponent
+  ],
+  providers: [
+    BrassagemManualService
   ]
 })
 export class BrassagemModule { }
