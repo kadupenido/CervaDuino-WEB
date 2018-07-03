@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Subscription } from 'rxjs';
 
 import { BrassagemManualService } from './brassagem-manual.service';
-import { DadosMostura } from './dados-mostura.model';
 
 @Component({
   selector: 'app-brassagem-manual',
@@ -11,6 +11,9 @@ import { DadosMostura } from './dados-mostura.model';
   styleUrls: ['./brassagem-manual.component.scss']
 })
 export class BrassagemManualComponent implements OnInit {
+
+  private subs: Subscription[];
+  private interval: any;
 
   public dadosMostura: any = {
     hlt: {
@@ -46,6 +49,17 @@ export class BrassagemManualComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.subs.push(this.brassagemService.isReady().subscribe((isReady) => {
+
+      if (isReady) {
+        this.spinnerService.hide();
+      } else {
+        this.toastr.error('O controlador não esta pronto, tentando reconectar...', 'Falha na conexão');
+      }
+
+    }));
+
     const self = this;
     setInterval(function () {
       self.brassagemService.obterDados().subscribe((dados) => {

@@ -18,4 +18,11 @@ export class BrassagemManualService {
     return this.http.get(this.baseUrl);
   }
 
+  /**
+   * Verifica se a placa esta pronta
+   */
+  isReady() {
+    return this.http.get(this.baseUrl + '/isReady');
+  }
+
 }

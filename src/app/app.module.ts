@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { NgxElectronModule } from 'ngx-electron';
 
 import { AppComponent } from './app.component';
 import { BrassagemManualComponent } from './brassagem/brassagem-manual/brassagem-manual.component';
@@ -14,9 +15,9 @@ import { EquipamentoModule } from './equipamento/equipamento.module';
 import { ReceitasModule } from './receitas/receitas.module';
 
 const appRoutes: Routes = [
-  { path: "brassagem/manual", component: BrassagemManualComponent },
-  { path: "", component: BrassagemManualComponent },
-  { path: "**", component: BrassagemManualComponent }
+  { path: 'brassagem/manual', component: BrassagemManualComponent },
+  { path: '', component: BrassagemManualComponent },
+  { path: '**', component: BrassagemManualComponent }
 ];
 
 @NgModule({
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     ToastModule.forRoot(),
     EquipamentoModule,
     ReceitasModule,
-    BrassagemModule
+    BrassagemModule,
+    NgxElectronModule
   ],
   bootstrap: [
     AppComponent
