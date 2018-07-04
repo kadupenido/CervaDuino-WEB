@@ -1,11 +1,26 @@
-.inverse-dropdown {
-    background-color: #222;
-    border-color: #080808;
-    &>li>a {
-        color: #999;
-        &:hover {
-            color: #fff;
-            background-color: #000;
-        }
-    }
+// .inverse-dropdown {
+//     background-color: #222;
+//     border-color: #080808;
+//     &>li>a {
+//         color: #999;
+//         &:hover {
+//             color: #fff;
+//             background-color: #000;
+//         }
+//     }
+// }
+.side-menu {
+    background-color: #434343;
+    color: #FFF;
+    height: 100%;
+    width: 10%;
+    float: left;
+}
+
+.content {
+    margin-left: 10%;
+}
+
+.container-fluid {
+    padding-top: 5px;
 }

@@ -50,22 +50,22 @@ export class BrassagemManualComponent implements OnInit {
 
   ngOnInit() {
 
-    this.subs.push(this.brassagemService.isReady().subscribe((isReady) => {
+    // this.subs.push(this.brassagemService.isReady().subscribe((isReady) => {
 
-      if (isReady) {
-        this.spinnerService.hide();
-      } else {
-        this.toastr.error('O controlador não esta pronto, tentando reconectar...', 'Falha na conexão');
-      }
+    //   if (isReady) {
+    //     this.spinnerService.hide();
+    //   } else {
+    //     this.toastr.error('O controlador não esta pronto, tentando reconectar...', 'Falha na conexão');
+    //   }
 
-    }));
+    // }));
 
-    const self = this;
-    setInterval(function () {
-      self.brassagemService.obterDados().subscribe((dados) => {
-        self.dadosMostura = dados;
-      });
-    }, 1000);
+    // const self = this;
+    // setInterval(function () {
+    //   self.brassagemService.obterDados().subscribe((dados) => {
+    //     self.dadosMostura = dados;
+    //   });
+    // }, 1000);
     this.spinnerService.hide();
   }
 
