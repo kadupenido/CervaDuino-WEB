@@ -53,9 +53,10 @@
           </div>
         </div>
       </mat-card-content>
-    </mat-card>
+      <hr>
+      <!-- </mat-card>
 
-    <mat-card>
+    <mat-card> -->
       <mat-card-header>
         <mat-card-title>MLT</mat-card-title>
       </mat-card-header>
@@ -114,36 +115,62 @@
         </div>
 
       </mat-card-content>
-    </mat-card>
+      <hr>
+      <!-- </mat-card>
 
-    <mat-card>
+    <mat-card> -->
       <mat-card-header>
         <mat-card-title>BK</mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <div class="row">
 
-          <div class="col-md-8">
-            <div class="form-group">
-              <label for="potenciaHlt">POTÊNCIA</label>
-              <mat-slider min="0" max="100" step="1" value="100" [(ngModel)]="dadosMostura.bk.potencia" thumbLabel="true" class="form-control no-border"></mat-slider>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="row">
+              <div class="col-md-12">
+                <ngx-gauge type="arch" size="150" [value]="dadosMostura.bk.temperatura" label="Temp" append="°C" thick="10" foregroundColor="rgba(218, 79, 73, 1)">
+                </ngx-gauge>
+              </div>
             </div>
           </div>
-
-          <div class="col-md-4">
-            <div class="switch">
-              <div class="form-group">
-                <label>RESISTÊNCIA</label>
-                <div class="btn-group form-control" id="status" data-toggle="buttons">
-                  <label class="btn btn-default btn-on btn-md" [class.active]="dadosMostura.bk.resistencia === true">
-                    <input type="radio" value="1">ON</label>
-                  <label class="btn btn-default btn-off btn-md" [class.active]="dadosMostura.bk.resistencia === false">
-                    <input type="radio" value="0" checked="checked">OFF</label>
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="potenciaHlt">POTÊNCIA</label>
+                  <mat-slider min="0" max="100" step="1" value="100" [(ngModel)]="dadosMostura.bk.potencia" thumbLabel="true" class="form-control no-border"></mat-slider>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="switch">
+                  <div class="form-group">
+                    <label>RESISTÊNCIA</label>
+                    <div class="btn-group form-control" id="status" data-toggle="buttons">
+                      <label class="btn btn-default btn-on btn-md" [class.active]="dadosMostura.bk.resistencia === true">
+                        <input type="radio" value="1">ON</label>
+                      <label class="btn btn-default btn-off btn-md" [class.active]="dadosMostura.bk.resistencia === false">
+                        <input type="radio" value="0" checked="checked">OFF</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="switch">
+                  <div class="form-group">
+                    <label>RESFRIAMENTO</label>
+                    <div class="btn-group form-control" id="status" data-toggle="buttons">
+                      <label class="btn btn-default btn-on btn-md" [class.active]="dadosMostura.bk.resistencia === true">
+                        <input type="radio" value="1">ON</label>
+                      <label class="btn btn-default btn-off btn-md" [class.active]="dadosMostura.bk.resistencia === false">
+                        <input type="radio" value="0" checked="checked">OFF</label>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </mat-card-content>
     </mat-card>
