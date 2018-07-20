@@ -1,48 +1,40 @@
-<div class="page-header">
+<!-- <div class="page-header">
   <h1>Receita
     <small>Detalhes</small>
   </h1>
-</div>
+</div> -->
 
 <form>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">DADOS</h3>
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
               <div class="form-group">
                 <label for="altura">Nome</label>
                 <input type="text" class="form-control">
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <div class="form-group">
-                <label for="altura">OG</label>
+                <label for="altura">L/KG</label>
                 <input type="number" class="form-control">
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2">
               <div class="form-group">
-                <label for="altura">Litros por KG de Grão</label>
+                <label for="altura">Grãos</label>
                 <input type="number" class="form-control">
               </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
               <div class="form-group">
-                <label for="altura">Qtd. Grãos</label>
-                <input type="number" class="form-control">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="altura">Tamanho do Lote</label>
+                <label for="altura">Lote</label>
                 <input type="number" class="form-control">
               </div>
             </div>
@@ -53,7 +45,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">RAMPAS DE MOSTURA</h3>
@@ -80,97 +72,80 @@
                     <td>{{r.minutos}}</td>
                   </tr>
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <th>
+                      <button class="btn btn-primary btn-xs">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                      </button>
+                    </th>
+                    <th>
+                      <input type="number" class="form-control input-sm">
+                    </th>
+                    <th>
+                      <input type="number" class="form-control input-sm">
+                    </th>
+                  </tr>
+                </tfoot>
               </table>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">ADICIONAR</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="form-group">
-                    <label for="altura">Temperatura</label>
-                    <input type="number" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="form-group">
-                    <label for="altura">Tempo em Minutos</label>
-                    <input type="number" class="form-control">
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+
+    <div class="col-md-5">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">ADIÇÕES DE LÚPULO</h3>
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-5">
-              <div class="form-group">
-                <label for="altura">Lúpulo</label>
-                <input type="number" class="form-control">
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div class="form-group">
-                <label for="altura">Tempo</label>
-                <input type="number" class="form-control">
-              </div>
+            <div class="col-md-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Lúpulo</th>
+                    <th>Qtde.</th>
+                    <th>Minutos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let l of lupulos">
+                    <td>
+                      <button class="btn btn-primary btn-xs">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      </button>
+                    </td>
+                    <td>{{l.lupulo}}</td>
+                    <td>{{l.qtde}}</td>
+                    <td>{{l.minutos}}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>
+                      <button class="btn btn-primary btn-xs">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                      </button>
+                    </th>
+                    <th>
+                      <input type="text" class="form-control input-sm">
+                    </th>
+                    <th>
+                      <input type="number" class="form-control input-sm">
+                    </th>
+                    <th>
+                      <input type="text" class="form-control input-sm">
+                    </th>
+                  </tr>
+                </tfoot>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </form>
-
-<!-- <form>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">HLT</h3>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-6 form-group">
-              <label for="altura">Altura</label>
-              <input type="number" class="form-control">
-            </div>
-            <div class="col-md-6 form-group">
-              <label for="altura">Diâmetro</label>
-              <input type="number" class="form-control">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 form-group">
-              <label for="altura">Espaço perdido</label>
-              <input type="number" class="form-control">
-            </div>
-            <div class="col-md-6 form-group">
-              <label for="altura">Capacidade</label>
-              <input type="number" class="form-control" readonly>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block">SALVAR</button>
-      </div>
-    </div>
-  </div>
-</form> -->

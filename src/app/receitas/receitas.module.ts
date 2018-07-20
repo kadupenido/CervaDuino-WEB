@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReceitasComponent } from './receitas.component';
-import { ReceitaDetailsComponent } from './receita-details/receita-details.component';
-import { Routes, RouterModule } from '@angular/router';
-import { ReceitaService } from './receita.service';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-const receitasRoutes: Routes = [
+import { ReceitaDetailsComponent } from './receita-details/receita-details.component';
+import { ReceitaService } from './receita.service';
+import { ReceitasComponent } from './receitas.component';
+
+const routes: Routes = [
   { path: 'receitas', component: ReceitasComponent },
   { path: 'receitas/nova', component: ReceitaDetailsComponent },
   { path: 'receitas/detalhes/:id', component: ReceitaDetailsComponent }
@@ -14,7 +15,7 @@ const receitasRoutes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(receitasRoutes),
+    RouterModule.forChild(routes)
   ],
   declarations: [
     ReceitasComponent,

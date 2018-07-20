@@ -1,0 +1,167 @@
+<!-- <div class="page-header">
+  <h1>Configurações
+  </h1>
+</div> -->
+
+<form [formGroup]="configuracaoForm" (ngSubmit)="onFormSubmit()">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">HLT</h3>
+        </div>
+        <div class="panel-body" formGroupName="hlt">
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Altura</label>
+              <input type="number" class="form-control" formControlName="altura">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Diâmetro</label>
+              <input type="number" class="form-control" formControlName="diametro">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Capacidade</label>
+              <input type="number" class="form-control" formControlName="capacidade" readonly>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Espaço perdido</label>
+              <input type="number" class="form-control" formControlName="espacoPerdido">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Offset Temp.</label>
+              <input type="number" class="form-control" formControlName="offsetTemp">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">MLT</h3>
+        </div>
+        <div class="panel-body" formGroupName="mlt">
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Altura</label>
+              <input type="number" class="form-control" formControlName="altura">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="diametro">Diâmetro</label>
+              <input type="number" class="form-control" formControlName="diametro">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="capacidade">Capacidade</label>
+              <input type="number" class="form-control" formControlName="capacidade" readonly>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="espacoPerdido">Espaço perdido</label>
+              <input type="number" class="form-control" formControlName="espacoPerdido">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Offset Temp.</label>
+              <input type="number" class="form-control" formControlName="offsetTemp">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">BK</h3>
+        </div>
+        <div class="panel-body" formGroupName="bk">
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Altura</label>
+              <input type="number" class="form-control" formControlName="altura">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Diâmetro</label>
+              <input type="number" class="form-control" formControlName="diametro">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Capacidade</label>
+              <input type="number" class="form-control" formControlName="capacidade" readonly>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Espaço perdido</label>
+              <input type="number" class="form-control" formControlName="espacoPerdido">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Evaporação</label>
+              <input type="number" class="form-control" formControlName="taxaEvaporacao">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Offset Temp.</label>
+              <input type="number" class="form-control" formControlName="offsetTemp">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">FERMENTADOR</h3>
+        </div>
+        <div class="panel-body" formGroupName="fermentador">
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Capacidade</label>
+              <input type="number" class="form-control" formControlName="capacidade">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <label for="altura">Espaço perdido</label>
+              <input type="number" class="form-control" formControlName="espacoPerdido">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <button type="submit" [disabled]="!configuracaoForm.valid" class="btn btn-primary btn-block">SALVAR</button>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- 
+<hr>
+
+<pre>
+  <p>Form value: {{ equipamentoForm.value | json }}</p>
+  <p>Form status: {{ equipamentoForm.status | json }}</p>
+</pre> -->

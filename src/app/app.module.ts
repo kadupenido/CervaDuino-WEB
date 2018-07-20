@@ -9,15 +9,13 @@ import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { NgxElectronModule } from 'ngx-electron';
 
 import { AppComponent } from './app.component';
-import { BrassagemManualComponent } from './brassagem/brassagem-manual/brassagem-manual.component';
 import { BrassagemModule } from './brassagem/brassagem.module';
-import { EquipamentoModule } from './equipamento/equipamento.module';
+import { ConfiguracaoModule } from './configuracao/configuracao.module';
 import { ReceitasModule } from './receitas/receitas.module';
 
 const appRoutes: Routes = [
-  { path: 'brassagem/manual', component: BrassagemManualComponent },
-  { path: '', component: BrassagemManualComponent },
-  { path: '**', component: BrassagemManualComponent }
+  { path: '', redirectTo: 'brassagem', pathMatch: 'full' },
+  { path: '**', redirectTo: 'brassagem', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -32,7 +30,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     Ng4LoadingSpinnerModule.forRoot(),
     ToastModule.forRoot(),
-    EquipamentoModule,
+    ConfiguracaoModule,
     ReceitasModule,
     BrassagemModule,
     NgxElectronModule

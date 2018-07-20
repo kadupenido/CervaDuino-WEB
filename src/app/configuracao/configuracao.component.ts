@@ -4,21 +4,21 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Subscription } from 'rxjs';
 
-import { Equipamento } from './equipamento.model';
-import { EquipamentoService } from './equipamento.service';
+import { Configuracao } from './configuracao.model';
+import { ConfiguracaoService } from './configuracao.service';
 
 @Component({
-  selector: "app-equipamento",
-  templateUrl: "./equipamento.component.html",
-  styleUrls: ["./equipamento.component.scss"]
+  selector: "app-configuracao",
+  templateUrl: "./configuracao.component.html",
+  styleUrls: ["./configuracao.component.scss"]
 })
-export class EquipamentoComponent implements OnInit, OnDestroy {
+export class ConfiguracaoComponent implements OnInit, OnDestroy {
 
-  equipamentoForm: FormGroup;
+  configuracaoForm: FormGroup;
   subs: Subscription[] = [];
 
   constructor(private fb: FormBuilder,
-    private equipamentoService: EquipamentoService,
+    private configuracaoService: ConfiguracaoService,
     private spinnerService: Ng4LoadingSpinnerService,
     private toastr: ToastsManager,
     private vcr: ViewContainerRef) {
@@ -30,9 +30,9 @@ export class EquipamentoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subs.push(this.equipamentoService.obterEquipamento()
-      .subscribe((data: Equipamento) => {
-        this.equipamentoForm.patchValue(data);
+    this.subs.push(this.configuracaoService.obterConfiguracao()
+      .subscribe((data: Configuracao) => {
+        this.configuracaoForm.patchValue(data);
         this.spinnerService.hide();
       }, (err) => {
         this.spinnerService.hide();
@@ -41,37 +41,44 @@ export class EquipamentoComponent implements OnInit, OnDestroy {
   }
 
   createForm() {
-    this.equipamentoForm = this.fb.group({
+    this.configuracaoForm = this.fb.group({
       hlt: this.fb.group({
         altura: ["", Validators.required],
         diametro: ["", Validators.required],
         capacidade: "",
-        espacoPerdido: ["", Validators.required]
+        espacoPerdido: ["", Validators.required],
+        offsetTemp: ["", Validators.required]
       }),
       mlt: this.fb.group({
         altura: ["", Validators.required],
         diametro: ["", Validators.required],
         capacidade: "",
-        espacoPerdido: ["", Validators.required]
+        espacoPerdido: ["", Validators.required],
+        offsetTemp: ["", Validators.required]
       }),
       bk: this.fb.group({
         altura: ["", Validators.required],
         diametro: ["", Validators.required],
         capacidade: "",
         espacoPerdido: ["", Validators.required],
-        taxaEvaporacao: ""
+        taxaEvaporacao: "",
+        offsetTemp: ["", Validators.required]
+      }),
+      fermentador: this.fb.group({
+        capacidade: ["", Validators.required],
+        espacoPerdido: ["", Validators.required]
       })
     });
   }
 
   onFormSubmit() {
     this.spinnerService.show();
-    const equipamento: Equipamento = this.equipamentoForm.value;
-    this.subs.push(this.equipamentoService.salvarEquipamento(equipamento)
-      .subscribe((data: Equipamento) => {
-        this.equipamentoForm.patchValue(data);
+    const configuracao: Configuracao = this.configuracaoForm.value;
+    this.subs.push(this.configuracaoService.salvarConfiguracao(configuracao)
+      .subscribe((data: Configuracao) => {
+        this.configuracaoForm.patchValue(data);
         this.spinnerService.hide();
-        this.toastr.success('Equipamento salvo com sucesso');
+        this.toastr.success('Configuração salva com sucesso');
       }, (err) => {
         this.toastr.error(err.message, 'Falha ao salvar');
       }));

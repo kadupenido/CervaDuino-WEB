@@ -15,14 +15,14 @@ function createWindow() {
 
     win.once('ready-to-show', () => {
         win.show();
-        win.maximize();
+        win.setFullScreen(true);
     });
 
     // e carrega index.html do app.
     win.loadFile('dist/index.html');
 
     // Open the DevTools.
-    // win.webContents.openDevTools()
+    //win.webContents.openDevTools()
 
     // Emitido quando a janela é fechada.
     win.on('closed', () => {

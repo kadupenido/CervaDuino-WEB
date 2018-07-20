@@ -12,6 +12,12 @@ export class ReceitaDetailsComponent implements OnInit {
     { temperatura: 76, minutos: 10 }
   ]
 
+  lupulos = [
+    { lupulo: 'Columbus', qtde: 50, minutos: 'FWH' },
+    { lupulo: 'Cascade', qtde: 25, minutos: 15 },
+    { lupulo: 'east kent goldings', qtde: 10, minutos: 'FlameOut' },
+  ]
+
   constructor() { }
 
   ngOnInit() {
