@@ -32,7 +32,9 @@ export class ConfiguracaoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subs.push(this.configuracaoService.obterConfiguracao()
       .subscribe((data: Configuracao) => {
-        this.configuracaoForm.patchValue(data);
+        if (data) {
+          this.configuracaoForm.patchValue(data);
+        }
         this.spinnerService.hide();
       }, (err) => {
         this.spinnerService.hide();
@@ -81,12 +83,11 @@ export class ConfiguracaoComponent implements OnInit, OnDestroy {
         this.toastr.success('Configuração salva com sucesso');
       }, (err) => {
         this.toastr.error(err.message, 'Falha ao salvar');
+        this.spinnerService.hide();
       }));
   }
 
   ngOnDestroy() {
-    this.subs.forEach(s => {
-      s.unsubscribe();
-    });
+    this.subs.forEach(s => s.unsubscribe());
   }
 }

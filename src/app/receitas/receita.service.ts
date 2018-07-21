@@ -1,16 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { environment } from '../../environments/environment.prod';
 
 
 @Injectable()
 export class ReceitaService {
 
-  constructor() { }
+  private baseUrl = environment.baseUrl + "/receitas";
+
+  constructor(private http: HttpClient) { }
 
   public obterReceitas() {
-    return [
-      { nome: 'APA do Italiano', estilo: 'American Pale ALE' },
-      { nome: 'LightBeer', estilo: 'Cream ALE' }
-    ];
+    return this.http.get(this.baseUrl);
   }
 
 }

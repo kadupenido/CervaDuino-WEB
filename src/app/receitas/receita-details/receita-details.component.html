@@ -4,38 +4,44 @@
   </h1>
 </div> -->
 
-<form>
+<form [formGroup]="receitaForm" (ngSubmit)="onFormSubmit()">
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">DADOS</h3>
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
               <div class="form-group">
                 <label for="altura">Nome</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" formControlName="nome">
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="altura">Estilo</label>
+                <input type="text" class="form-control" formControlName="estilo">
+              </div>
+            </div>
+            <div class="col-md-1">
               <div class="form-group">
                 <label for="altura">L/KG</label>
-                <input type="number" class="form-control">
+                <input type="number" class="form-control" formControlName="lkg">
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
               <div class="form-group">
                 <label for="altura">Grãos</label>
-                <input type="number" class="form-control">
+                <input type="number" class="form-control" formControlName="graos">
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
               <div class="form-group">
-                <label for="altura">Lote</label>
-                <input type="number" class="form-control">
+                <label for="altura">Litros</label>
+                <input type="number" class="form-control" formControlName="litros">
               </div>
             </div>
           </div>
@@ -45,12 +51,13 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4">
+
+    <div class="col-md-5">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">RAMPAS DE MOSTURA</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" formGroupName="rampas">
           <div class="row">
             <div class="col-md-12">
               <table class="table table-striped">
@@ -62,7 +69,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let r of rampas">
+                  <tr *ngFor="let r of receitaForm.controls.rampas.controls">
                     <td>
                       <button class="btn btn-primary btn-xs">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -75,15 +82,15 @@
                 <tfoot>
                   <tr>
                     <th>
-                      <button class="btn btn-primary btn-xs">
+                      <button class="btn btn-primary btn-xs" (click)="novaRampa(temperatura.value, minutos.value)">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                       </button>
                     </th>
                     <th>
-                      <input type="number" class="form-control input-sm">
+                      <input type="number" #temperatura class="form-control input-sm">
                     </th>
                     <th>
-                      <input type="number" class="form-control input-sm">
+                      <input type="number" #minutos class="form-control input-sm">
                     </th>
                   </tr>
                 </tfoot>
@@ -94,19 +101,19 @@
       </div>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-7">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">ADIÇÕES DE LÚPULO</h3>
+          <h3 class="panel-title">ADIÇÕES NA FERVURA</h3>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" formArrayName="adicoes">
           <div class="row">
             <div class="col-md-12">
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th></th>
-                    <th>Lúpulo</th>
+                    <th>Lúpulo / Adjunto</th>
                     <th>Qtde.</th>
                     <th>Minutos</th>
                   </tr>
@@ -147,5 +154,23 @@
         </div>
       </div>
     </div>
+
   </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <button type="submit" [disabled]="!receitaForm.valid" class="btn btn-primary btn-block">SALVAR</button>
+      </div>
+    </div>
+  </div>
+
 </form>
+
+
+<hr>
+
+<pre>
+  <p>Form value: {{ receitaForm.value | json }}</p>
+  <p>Form status: {{ receitaForm.status | json }}</p>
+</pre>
