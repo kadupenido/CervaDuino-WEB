@@ -4,7 +4,7 @@
   </h1>
 </div> -->
 
-<form [formGroup]="receitaForm" (ngSubmit)="onFormSubmit()">
+<form [formGroup]="receitaForm">
 
   <div class="row">
     <div class="col-md-12">
@@ -57,7 +57,7 @@
         <div class="panel-heading">
           <h3 class="panel-title">RAMPAS DE MOSTURA</h3>
         </div>
-        <div class="panel-body" formGroupName="rampas">
+        <div class="panel-body" formArrayName="rampas">
           <div class="row">
             <div class="col-md-12">
               <table class="table table-striped">
@@ -69,28 +69,28 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let r of receitaForm.controls.rampas.controls">
+                  <tr *ngFor="let r of receitaForm.controls.rampas.controls; let i = index;">
                     <td>
-                      <button class="btn btn-primary btn-xs">
+                      <button class="btn btn-primary btn-xs" (click)="removerRampa(i);">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                       </button>
                     </td>
-                    <td>{{r.temperatura}}</td>
-                    <td>{{r.minutos}}</td>
+                    <td>{{r.value.temperatura}}</td>
+                    <td>{{r.value.minutos}}</td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr>
                     <th>
-                      <button class="btn btn-primary btn-xs" (click)="novaRampa(temperatura.value, minutos.value)">
+                      <button class="btn btn-primary btn-xs" (click)="novaRampa(rampaTemp.value, rampaMin.value);">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                       </button>
                     </th>
                     <th>
-                      <input type="number" #temperatura class="form-control input-sm">
+                      <input type="number" #rampaTemp class="form-control input-sm">
                     </th>
                     <th>
-                      <input type="number" #minutos class="form-control input-sm">
+                      <input type="number" #rampaMin class="form-control input-sm">
                     </th>
                   </tr>
                 </tfoot>
@@ -119,32 +119,32 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let l of lupulos">
+                  <tr *ngFor="let a of receitaForm.controls.adicoes.controls; let i = index;">
                     <td>
-                      <button class="btn btn-primary btn-xs">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      <button class="btn btn-primary btn-xs" (click)="removerAdicao(i);">
+                        <span class=" glyphicon glyphicon-remove " aria-hidden="true "></span>
                       </button>
                     </td>
-                    <td>{{l.lupulo}}</td>
-                    <td>{{l.qtde}}</td>
-                    <td>{{l.minutos}}</td>
+                    <td>{{a.value.nome}}</td>
+                    <td>{{a.value.qtde}}</td>
+                    <td>{{a.value.minutos}}</td>
                   </tr>
                 </tbody>
                 <tfoot>
                   <tr>
                     <th>
-                      <button class="btn btn-primary btn-xs">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                      <button class="btn btn-primary btn-xs" (click)="novaAdicao(adicaoNome.value, adicaoQtde.value, adicaoMinutos.value);">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true "></span>
                       </button>
                     </th>
                     <th>
-                      <input type="text" class="form-control input-sm">
+                      <input type="text" #adicaoNome class="form-control input-sm">
                     </th>
                     <th>
-                      <input type="number" class="form-control input-sm">
+                      <input type="number" #adicaoQtde class="form-control input-sm">
                     </th>
                     <th>
-                      <input type="text" class="form-control input-sm">
+                      <input type="text" #adicaoMinutos class="form-control input-sm">
                     </th>
                   </tr>
                 </tfoot>
@@ -157,10 +157,10 @@
 
   </div>
 
-  <div class="row">
-    <div class="col-md-2">
-      <div class="form-group">
-        <button type="submit" [disabled]="!receitaForm.valid" class="btn btn-primary btn-block">SALVAR</button>
+  <div class="row ">
+    <div class="col-md-2 ">
+      <div class="form-group ">
+        <button type="submit " (click)="onFormSubmit(receitaForm.value); " class="btn btn-primary btn-block ">SALVAR</button>
       </div>
     </div>
   </div>
@@ -168,9 +168,9 @@
 </form>
 
 
-<hr>
+<!-- <hr>
 
 <pre>
   <p>Form value: {{ receitaForm.value | json }}</p>
   <p>Form status: {{ receitaForm.status | json }}</p>
-</pre>
+</pre> -->

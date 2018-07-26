@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr';
@@ -17,6 +17,13 @@ export class ReceitaDetailsComponent implements OnInit {
   subs: Subscription[] = [];
   idReceita: any;
   receitaForm: FormGroup;
+
+  @ViewChild('rampaTemp') private rampaTemp: ElementRef;
+  @ViewChild('rampaMin') private rampaMin: ElementRef;
+
+  @ViewChild('adicaoNome') private adicaoNome: ElementRef;
+  @ViewChild('adicaoQtde') private adicaoQtde: ElementRef;
+  @ViewChild('adicaoMinutos') private adicaoMinutos: ElementRef;
 
   constructor(private receitasService: ReceitaService,
     private fb: FormBuilder,
@@ -40,32 +47,46 @@ export class ReceitaDetailsComponent implements OnInit {
       lkg: ["", Validators.required],
       graos: ["", Validators.required],
       litros: ["", Validators.required],
-      rampas: this.fb.array([
-        this.fb.group({
-          temperatura: ["", Validators.required],
-          minutos: ["", Validators.required],
-        })
-      ]),
-      adcioes: this.fb.array([
-        this.fb.group({
-          nome: ["", Validators.required],
-          qtde: ["", Validators.required],
-          minutos: ["", Validators.required]
-        })
-      ])
+      rampas: this.fb.array([]),
+      adicoes: this.fb.array([])
     });
   }
 
-  onFormSubmit() {
-    console.log(this.receitaForm.value)
+  onFormSubmit(val) {
+    console.log(val);
   }
 
-  novaRampa(temperatura: Number, minutos: Number) {
-    const control = <FormArray>this.receitaForm.controls['rampas'];
-    control.push(this.fb.group({
+  novaRampa(temperatura: number, minutos: number) {
+    const rampas = <FormArray>this.receitaForm.controls['rampas'];
+    rampas.push(this.fb.group({
       temperatura: [temperatura, Validators.required],
       minutos: [minutos, Validators.required],
-    }))
+    }));
+    this.rampaTemp.nativeElement.value = '';
+    this.rampaMin.nativeElement.value = '';
   }
+
+  removerRampa(index: number) {
+    const rampas = <FormArray>this.receitaForm.controls['rampas'];
+    rampas.removeAt(index);
+  }
+
+  novaAdicao(nome: string, qtde: number, minutos: number) {
+    const adicao = <FormArray>this.receitaForm.controls['adicoes'];
+    adicao.push(this.fb.group({
+      nome: [nome, Validators.required],
+      qtde: [qtde, Validators.required],
+      minutos: [minutos, Validators.required]
+    }));
+    this.adicaoNome.nativeElement.value = '';
+    this.adicaoQtde.nativeElement.value = '';
+    this.adicaoMinutos.nativeElement.value = '';
+  }
+
+  removerAdicao(index: number) {
+    const adicao = <FormArray>this.receitaForm.controls['adicoes'];
+    adicao.removeAt(index);
+  }
+
 
 }
