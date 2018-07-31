@@ -83,7 +83,7 @@
                   <tr>
                     <th>
                       <button class="btn btn-primary btn-xs" (click)="novaRampa(rampaTemp.value, rampaMin.value);">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                       </button>
                     </th>
                     <th>
@@ -157,10 +157,10 @@
 
   </div>
 
-  <div class="row ">
-    <div class="col-md-2 ">
-      <div class="form-group ">
-        <button type="submit " (click)="onFormSubmit(receitaForm.value); " class="btn btn-primary btn-block ">SALVAR</button>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="form-group">
+        <button type="submit" [disabled]="!receitaForm.valid" (click)="onFormSubmit(receitaForm.value);" class="btn btn-primary btn-block">SALVAR</button>
       </div>
     </div>
   </div>
@@ -168,9 +168,10 @@
 </form>
 
 
-<!-- <hr>
+<hr>
 
 <pre>
   <p>Form value: {{ receitaForm.value | json }}</p>
   <p>Form status: {{ receitaForm.status | json }}</p>
-</pre> -->
+  <p>Form status: {{ _id }}</p>
+</pre>

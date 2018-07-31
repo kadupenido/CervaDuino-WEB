@@ -1,12 +1,12 @@
 import { Configuracao } from './configuracao.model';
-import { Injectable } from "@angular/core";
-import { environment } from "../../environments/environment";
+import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ConfiguracaoService {
 
-  private baseUrl = environment.baseUrl + "/configuracao";
+  private baseUrl = environment.baseUrl + '/configuracao';
 
   constructor(private http: HttpClient) {
 

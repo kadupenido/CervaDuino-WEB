@@ -8,9 +8,9 @@ import { Configuracao } from './configuracao.model';
 import { ConfiguracaoService } from './configuracao.service';
 
 @Component({
-  selector: "app-configuracao",
-  templateUrl: "./configuracao.component.html",
-  styleUrls: ["./configuracao.component.scss"]
+  selector: 'app-configuracao',
+  templateUrl: './configuracao.component.html',
+  styleUrls: ['./configuracao.component.scss']
 })
 export class ConfiguracaoComponent implements OnInit, OnDestroy {
 
