@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { Subscription } from 'rxjs';
-
-import { BrassagemManualService } from './brassagem-manual.service';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-brassagem-manual',
@@ -12,8 +10,7 @@ import { BrassagemManualService } from './brassagem-manual.service';
 })
 export class BrassagemManualComponent implements OnInit {
 
-  private subs: Subscription[];
-  private interval: any;
+  private socket: SocketIOClient.Socket;
 
   public dadosMostura: any = {
     hlt: {
@@ -42,31 +39,42 @@ export class BrassagemManualComponent implements OnInit {
   constructor(
     private spinnerService: Ng4LoadingSpinnerService,
     private vcr: ViewContainerRef,
-    private toastr: ToastsManager,
-    private brassagemService: BrassagemManualService) {
+    private toastr: ToastsManager) {
     this.toastr.setRootViewContainerRef(vcr);
     this.spinnerService.show();
   }
 
   ngOnInit() {
 
-    // this.subs.push(this.brassagemService.isReady().subscribe((isReady) => {
+    try {
 
-    //   if (isReady) {
-    //     this.spinnerService.hide();
-    //   } else {
-    //     this.toastr.error('O controlador não esta pronto, tentando reconectar...', 'Falha na conexão');
-    //   }
+      this.socket = io.connect('http://localhost:3000');
 
-    // }));
+      this.socket.on('hltTemp', (temp: number) => {
+        this.dadosMostura.hlt.temperatura = temp;
+      });
 
-    // const self = this;
-    // setInterval(function () {
-    //   self.brassagemService.obterDados().subscribe((dados) => {
-    //     self.dadosMostura = dados;
-    //   });
-    // }, 1000);
-    this.spinnerService.hide();
+      this.socket.on('mltTemp', (temp: number) => {
+        this.dadosMostura.mlt.temperatura = temp;
+      });
+
+      this.socket.on('bkTemp', (temp: number) => {
+        this.dadosMostura.bk.temperatura = temp;
+      });
+
+      this.socket.on('currentData', (data) => {
+        this.dadosMostura.consumo.energia = data.consumption;
+        this.dadosMostura.consumo.potencia = data.power;
+        this.dadosMostura.consumo.corrente = data.current;
+      });
+
+
+      this.spinnerService.hide();
+
+    } catch (error) {
+      this.spinnerService.hide();
+      this.toastr.error('O controlador não esta pronto...', 'Falha na conexão');
+    }
   }
 
   public dataChanged() {
