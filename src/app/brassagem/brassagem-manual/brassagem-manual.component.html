@@ -1,16 +1,6 @@
 <div class="row">
 
   <div class="col-md-4">
-    <mat-card class="teste">
-      <mat-card-header>
-        <mat-card-title>RAMPAS</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <div class="col-md-4">
 
     <mat-card>
       <mat-card-header>
@@ -31,7 +21,7 @@
               <div class="col-md-5">
                 <div class="form-group">
                   <label>SET POINT</label>
-                  <input type="number" class="form-control" [(ngModel)]="dadosMostura.hlt.setPoint" (change)="dataChanged()">
+                  <input type="number" class="form-control" [(ngModel)]="dadosMostura.hlt.setPoint" (change)="hltSetPoint()">
                 </div>
               </div>
               <div class="col-md-7">
@@ -39,10 +29,10 @@
                   <div class="form-group">
                     <label>RESISTÊNCIA</label>
                     <div class="btn-group form-control" id="status" data-toggle="buttons">
-                      <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.hlt.resistencia = !dadosMostura.hlt.resistencia; dataChanged()"
+                      <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.hlt.resistencia = !dadosMostura.hlt.resistencia; hltResistencia()"
                         [class.active]="dadosMostura.hlt.resistencia === true">
                         <input type="radio">ON</label>
-                      <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.hlt.resistencia = !dadosMostura.hlt.resistencia; dataChanged()"
+                      <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.hlt.resistencia = !dadosMostura.hlt.resistencia; hltResistencia()"
                         [class.active]="dadosMostura.hlt.resistencia === false">
                         <input type="radio">OFF</label>
                     </div>
@@ -76,7 +66,7 @@
               <div class="col-md-5">
                 <div class="form-group">
                   <label>SET POINT</label>
-                  <input type="number" class="form-control" [(ngModel)]="dadosMostura.mlt.setPoint">
+                  <input type="number" class="form-control" [(ngModel)]="dadosMostura.mlt.setPoint" (change)="mltSetPoint()">
                 </div>
               </div>
               <div class="col-md-7">
@@ -84,10 +74,10 @@
                   <div class="form-group">
                     <label>RESISTÊNCIA</label>
                     <div class="btn-group form-control" id="status" data-toggle="buttons">
-                      <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.mlt.resistencia = !dadosMostura.mlt.resistencia; dataChanged()"
+                      <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.mlt.resistencia = !dadosMostura.mlt.resistencia; mltResistencia()"
                         [class.active]="dadosMostura.mlt.resistencia === true">
                         <input type="radio">ON</label>
-                      <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.mlt.resistencia = !dadosMostura.mlt.resistencia; dataChanged()"
+                      <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.mlt.resistencia = !dadosMostura.mlt.resistencia; mltResistencia()"
                         [class.active]="dadosMostura.mlt.resistencia === false">
                         <input type="radio">OFF</label>
                     </div>
@@ -102,10 +92,12 @@
                   <div class="form-group">
                     <label>RECIRCULAÇÃO</label>
                     <div class="btn-group form-control" id="status" data-toggle="buttons">
-                      <label class="btn btn-default btn-on btn-md">
-                        <input type="radio" value="1">ON</label>
-                      <label class="btn btn-default btn-off btn-md active">
-                        <input type="radio" value="0" checked="checked">OFF</label>
+                      <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.mlt.recirculacao = !dadosMostura.mlt.recirculacao; mltRecirculacao()"
+                        [class.active]="dadosMostura.mlt.recirculacao === true">
+                        <input type="radio">ON</label>
+                      <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.mlt.recirculacao = !dadosMostura.mlt.recirculacao; mltRecirculacao()"
+                        [class.active]="dadosMostura.mlt.recirculacao === false">
+                        <input type="radio">OFF</label>
                     </div>
                   </div>
                 </div>
@@ -138,7 +130,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label for="potenciaHlt">POTÊNCIA</label>
-                  <mat-slider min="0" max="100" step="1" value="100" [(ngModel)]="dadosMostura.bk.potencia" thumbLabel="true" class="form-control no-border"></mat-slider>
+                  <mat-slider min="0" max="255" step="1" [(ngModel)]="dadosMostura.bk.potencia" (change)="bkPotencia()" thumbLabel="true" class="form-control no-border"></mat-slider>
                 </div>
               </div>
             </div>
@@ -148,9 +140,11 @@
                   <div class="form-group">
                     <label>RESISTÊNCIA</label>
                     <div class="btn-group form-control" id="status" data-toggle="buttons">
-                      <label class="btn btn-default btn-on btn-md" [class.active]="dadosMostura.bk.resistencia === true">
+                      <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.bk.resistencia = !dadosMostura.bk.resistencia; bkResistencia()"
+                        [class.active]="dadosMostura.bk.resistencia === true">
                         <input type="radio" value="1">ON</label>
-                      <label class="btn btn-default btn-off btn-md" [class.active]="dadosMostura.bk.resistencia === false">
+                      <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.bk.resistencia = !dadosMostura.bk.resistencia; bkResistencia()"
+                        [class.active]="dadosMostura.bk.resistencia === false">
                         <input type="radio" value="0" checked="checked">OFF</label>
                     </div>
                   </div>
@@ -161,9 +155,11 @@
                   <div class="form-group">
                     <label>RESFRIAMENTO</label>
                     <div class="btn-group form-control" id="status" data-toggle="buttons">
-                      <label class="btn btn-default btn-on btn-md" [class.active]="dadosMostura.bk.resistencia === true">
+                      <label class="btn btn-default btn-on btn-md" (click)="dadosMostura.bk.resfriamento = !dadosMostura.bk.resfriamento; bkResfriamento()"
+                        [class.active]="dadosMostura.bk.resfriamento === true">
                         <input type="radio" value="1">ON</label>
-                      <label class="btn btn-default btn-off btn-md" [class.active]="dadosMostura.bk.resistencia === false">
+                      <label class="btn btn-default btn-off btn-md" (click)="dadosMostura.bk.resfriamento = !dadosMostura.bk.resfriamento; bkResfriamento()"
+                        [class.active]="dadosMostura.bk.resfriamento === false">
                         <input type="radio" value="0" checked="checked">OFF</label>
                     </div>
                   </div>
@@ -213,5 +209,48 @@
         </mat-card>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>TIMER</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-md-10 col-md-offset-2">
+                <span class="time">{{ time }}</span>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="text">
+                    <a id="start">Start</a>
+                    <a id="stop">Stop</a>
+                    <a id="reset">Reset</a>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="btn-container">
+                  <a id="start">Start</a>
+                  <a id="stop">Stop</a>
+                  <a id="reset">Reset</a>
+                </div> -->
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
   </div>
+
+  <div class="col-md-4">
+    <mat-card class="teste">
+      <mat-card-header>
+        <mat-card-title>RAMPAS</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
 </div>

@@ -12,6 +12,7 @@ export class BrassagemManualComponent implements OnInit {
 
   private socket: SocketIOClient.Socket;
 
+  public time: string = "00:00:00";
   public dadosMostura: any = {
     hlt: {
       temperatura: 0,
@@ -26,6 +27,7 @@ export class BrassagemManualComponent implements OnInit {
     },
     bk: {
       resistencia: false,
+      resfriamento: false,
       potencia: 0,
     },
     consumo: {
@@ -50,35 +52,72 @@ export class BrassagemManualComponent implements OnInit {
 
       this.socket = io.connect('http://localhost:3000');
 
-      this.socket.on('hltTemp', (temp: number) => {
-        this.dadosMostura.hlt.temperatura = temp;
+      this.socket.on('connect', () => {
+
+        this.socket.on('hltTemp', (temp: number) => {
+          this.dadosMostura.hlt.temperatura = temp;
+        });
+
+        this.socket.on('mltTemp', (temp: number) => {
+          this.dadosMostura.mlt.temperatura = temp;
+        });
+
+        this.socket.on('bkTemp', (temp: number) => {
+          this.dadosMostura.bk.temperatura = temp;
+        });
+
+        this.socket.on('currentData', (data) => {
+          this.dadosMostura.consumo.energia = data.consumption;
+          this.dadosMostura.consumo.potencia = data.power;
+          this.dadosMostura.consumo.corrente = data.current;
+        });
+
+        this.spinnerService.hide();
+        this.toastr.success('Conexão estabelecida...', 'Conectado');
+
       });
 
-      this.socket.on('mltTemp', (temp: number) => {
-        this.dadosMostura.mlt.temperatura = temp;
+      this.socket.on('disconnect', () => {
+        this.spinnerService.show();
+        this.toastr.error('Desconectado.', 'Falha');
       });
-
-      this.socket.on('bkTemp', (temp: number) => {
-        this.dadosMostura.bk.temperatura = temp;
-      });
-
-      this.socket.on('currentData', (data) => {
-        this.dadosMostura.consumo.energia = data.consumption;
-        this.dadosMostura.consumo.potencia = data.power;
-        this.dadosMostura.consumo.corrente = data.current;
-      });
-
-
-      this.spinnerService.hide();
 
     } catch (error) {
       this.spinnerService.hide();
-      this.toastr.error('O controlador não esta pronto...', 'Falha na conexão');
+      this.toastr.error(error, 'Falha');
     }
   }
 
-  public dataChanged() {
-    console.log(this.dadosMostura);
+  public hltSetPoint() {
+    this.socket.emit('hltSetPoint', this.dadosMostura.hlt.setPoint);
+  }
+
+  public hltResistencia() {
+    this.socket.emit('hltResistencia', this.dadosMostura.hlt.resistencia);
+  }
+
+  public mltSetPoint() {
+    this.socket.emit('mltSetPoint', this.dadosMostura.mlt.setPoint);
+  }
+
+  public mltResistencia() {
+    this.socket.emit('mltResistencia', this.dadosMostura.mlt.resistencia);
+  }
+
+  public mltRecirculacao() {
+    this.socket.emit('mltRecirculacao', this.dadosMostura.mlt.recirculacao);
+  }
+
+  public bkResistencia() {
+    this.socket.emit('bkResistencia', this.dadosMostura.bk.resistencia);
+  }
+
+  public bkPotencia() {
+    this.socket.emit('bkPotencia', this.dadosMostura.bk.potencia);
+  }
+
+  public bkResfriamento() {
+    this.socket.emit('bkResfriamento', this.dadosMostura.bk.resfriamento);
   }
 
 }
