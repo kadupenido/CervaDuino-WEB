@@ -2,6 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import * as io from 'socket.io-client';
+import '../../shared/extension-methods'
 
 @Component({
   selector: 'app-brassagem-manual',
@@ -12,7 +13,14 @@ export class BrassagemManualComponent implements OnInit {
 
   private socket: SocketIOClient.Socket;
 
-  public time: string = "00:00:00";
+  public hora: number = 0;
+  public minuto: number = 0;
+  public segundo: number = 0;
+
+  public countDown: boolean = false;
+  public countDownDate: Date;
+  public countDownInterval: any;
+
   public dadosMostura: any = {
     hlt: {
       temperatura: 0,
@@ -120,4 +128,77 @@ export class BrassagemManualComponent implements OnInit {
     this.socket.emit('bkResfriamento', this.dadosMostura.bk.resfriamento);
   }
 
+  public startCountDown() {
+
+    if (this.countDown) {
+      return;
+    }
+
+    this.countDown = true;
+    this.countDownDate = new Date().addHour(this.hora).addMinutes(this.minuto).addSeconds(this.segundo);
+
+    this.countDownInterval = setInterval(() => {
+
+      let now = new Date().getTime();
+
+      var distance = this.countDownDate.getTime() - now;
+
+      this.hora = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      this.minuto = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      this.segundo = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (distance < 0) {
+        clearInterval(this.countDownInterval);
+        this.hora = 0;
+        this.minuto = 0;
+        this.segundo = 0;
+        this.countDown = false;
+      }
+
+    }, 1000)
+
+  }
+
+  public stopCountDown() {
+
+    if (!this.countDown) {
+      return;
+    }
+
+    clearInterval(this.countDownInterval);
+    this.countDown = false;
+
+  }
+
+  public resetCountDown() {
+
+    if (this.countDown) {
+      clearInterval(this.countDownInterval);
+      this.countDown = false;
+    }
+
+    this.stopCountDown();
+    this.hora = 0;
+    this.minuto = 0;
+    this.segundo = 0;
+
+  }
+
+  public getCountDown(): string {
+    return `${this.hora.format2Digits()}:${this.minuto.format2Digits()}:${this.segundo.format2Digits()}`;
+  }
+
+  public horaChange(val) {
+    if ((val == 1 && this.hora == 23) || (val == -1 && this.hora == 0)) {
+      return;
+    }
+    this.hora += val;
+  }
+
+  public minutoChange(val) {
+    if ((val == 1 && this.minuto == 59) || (val == -1 && this.minuto == 0)) {
+      return;
+    }
+    this.minuto += val;
+  }
 }

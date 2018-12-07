@@ -3,9 +3,16 @@
 @import 'variables';
 @import '../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap';
 @import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+@font-face {
+    font-family: 'Share Tech Mono';
+    src: url('assets/ShareTechMono-Regular.ttf') format("opentype");
+}
+
 html,
 body {
     height: 100%;
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
 }
 
 body {

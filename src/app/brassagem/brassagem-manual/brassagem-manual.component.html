@@ -218,23 +218,50 @@
           </mat-card-header>
           <mat-card-content>
             <div class="row">
-              <div class="col-md-10 col-md-offset-2">
-                <span class="time">{{ time }}</span>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="text">
-                    <a id="start">Start</a>
-                    <a id="stop">Stop</a>
-                    <a id="reset">Reset</a>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 text">
+                    <a (click)="horaChange(1);">
+                      <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+                    </a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 text">
+                    <a (click)="horaChange(-1);">
+                      <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+                    </a>
                   </div>
                 </div>
               </div>
-              <!-- <div class="btn-container">
-                  <a id="start">Start</a>
-                  <a id="stop">Stop</a>
-                  <a id="reset">Reset</a>
-                </div> -->
+              <div class="col-md-8">
+                <span class="time">{{ getCountDown() }}</span>
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <div class="col-md-12 text">
+                    <a (click)="minutoChange(1);">
+                      <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
+                    </a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 text">
+                    <a (click)="minutoChange(-1);">
+                      <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="text">
+                  <a id="start" (click)="startCountDown();">Start</a>
+                  <a id="stop" (click)="stopCountDown();">Stop</a>
+                  <a id="reset" (click)="resetCountDown();">Reset</a>
+                </div>
+              </div>
             </div>
           </mat-card-content>
         </mat-card>
