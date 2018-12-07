@@ -1,5 +1,6 @@
 # CervaDuino-WEB :beer:
 ### API para controle de brassagens com arduino 
+![Image of CervaDuino-WEB](https://ibb.co/4f9Fcwh)
 
 # Componentes
 
